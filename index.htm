@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batel Rap - الفعاليات</title>
+    <title>Batel Rap - منصة حفلات الراب والباتل</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         /* الأساسيات */
         :root {
-            --primary-color: #1c1919;
-            --secondary-color: #ab0012;
+            --primary-color: #1A237E;
+            --secondary-color: #B71C1C;
             --gold-color: #FFD700;
             --white-color: #FFFFFF;
-            --dark-gray: #121212;
+            --dark-gray: #212121;
             --light-gray: #f5f5f5;
         }
 
@@ -25,549 +24,1026 @@
         }
 
         body {
-            background-color: var(--white-color);
-            color: var(--primary-color);
+            background-color: #f9f9f9;
+            color: var(--dark-gray);
             direction: rtl;
         }
 
-        /* التكيف مع جميع الأجهزة */
         .container {
             width: 100%;
-            padding: 0 15px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
 
-        /* شاشات الهواتف (أقل من 576px) - إفتراضي */
-
-        /* شاشات صغيرة (أكبر من 576px) */
-        @media (min-width: 576px) {
-            .container {
-                max-width: 540px;
-            }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        /* شاشات متوسطة (أكبر من 768px) */
-        @media (min-width: 768px) {
-            .container {
-                max-width: 720px;
-            }
+        .gold-btn {
+            background-color: var(--gold-color);
+            color: var(--dark-gray);
         }
 
-        /* شاشات كبيرة (أكبر من 992px) */
-        @media (min-width: 992px) {
-            .container {
-                max-width: 960px;
-            }
+        .gold-btn:hover {
+            background-color: #e6c200;
         }
 
-        /* شاشات كبيرة جداً (أكبر من 1200px) */
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1140px;
-            }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: var(--primary-color);
+            position: relative;
         }
 
-        /* شاشات التلفزيون (أكبر من 1400px) */
-        @media (min-width: 1400px) {
-            .container {
-                max-width: 1320px;
-            }
-            
-            /* تكبير الخطوط للشاشات الكبيرة */
-            body {
-                font-size: 18px;
-            }
-            
-            h1 {
-                font-size: 3.5rem;
-            }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 15px auto 0;
         }
 
         /* شريط التنقل */
         .navbar {
-            background-color: var(--white-color);
+            background-color: var(--primary-color);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 15px 0;
         }
 
         .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
         }
 
         .logo img {
-            height: 40px;
+            height: 50px;
         }
 
-        /* قائمة التنقل للكمبيوتر */
-        .nav-desktop {
-            display: none;
+        .nav-links {
+            display: flex;
+            list-style: none;
         }
 
-        /* قائمة التنقل للهاتف */
-        .nav-mobile {
-            display: block;
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-color);
+        }
+
+        .auth-buttons .btn {
+            margin-right: 10px;
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: var(--white-color);
+            border: 1px solid var(--white-color);
+        }
+
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .register-btn {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+        }
+
+        .register-btn:hover {
+            background-color: #9e1616;
         }
 
         .mobile-menu-btn {
-            background: none;
-            border: none;
+            display: none;
+            color: white;
             font-size: 24px;
-            color: var(--primary-color);
             cursor: pointer;
         }
 
-        /* على شاشات متوسطة وكبيرة نعرض قائمة الكمبيوتر ونخفي قائمة الهاتف */
-        @media (min-width: 992px) {
-            .nav-desktop {
-                display: flex;
-                list-style: none;
-            }
-            
-            .nav-desktop li {
-                margin-left: 25px;
-            }
-            
-            .nav-desktop a {
-                color: var(--primary-color);
-                font-weight: 500;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                position: relative;
-                padding: 5px 0;
-            }
-            
-            .nav-desktop a::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                width: 0;
-                height: 2px;
-                background-color: var(--secondary-color);
-                transition: width 0.3s ease;
-            }
-            
-            .nav-desktop a:hover::after {
-                width: 100%;
-            }
-            
-            .nav-mobile {
-                display: none;
-            }
+        /* شريط العرض الشرائح */
+        .hero-slider {
+            margin-top: 80px;
+            position: relative;
         }
 
-        /* صفحة الفعاليات */
-        .events-page {
-            padding-top: 80px;
-        }
-
-        .page-header {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            padding: 60px 0;
-            margin-bottom: 40px;
+        .slider-container {
+            width: 100%;
+            height: 500px;
             position: relative;
             overflow: hidden;
         }
 
-        /* تكبير رأس الصفحة للشاشات الكبيرة */
-        @media (min-width: 992px) {
-            .page-header {
-                padding: 100px 0;
-                margin-bottom: 60px;
-            }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
         }
 
-        .page-title {
-            font-size: 2rem;
-            margin-bottom: 15px;
+        .slide.active {
+            opacity: 1;
         }
 
-        .page-subtitle {
-            font-size: 1rem;
-            max-width: 600px;
-            line-height: 1.6;
+        .slide-content {
+            position: absolute;
+            bottom: 100px;
+            right: 100px;
+            color: var(--white-color);
+            max-width: 500px;
+            text-align: right;
         }
 
-        @media (min-width: 768px) {
-            .page-title {
-                font-size: 2.5rem;
-            }
-            
-            .page-subtitle {
-                font-size: 1.1rem;
-            }
+        .slide-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* فلتر الفعاليات */
-        .events-filter {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .slide-content p {
+            font-size: 20px;
             margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        @media (min-width: 768px) {
-            .events-filter {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        .filter-group {
+        .slider-controls {
+            position: absolute;
+            bottom: 50px;
+            right: 100px;
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
         }
 
-        /* شبكة الفعاليات */
-        .events-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-bottom: 40px;
+        .slider-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
         }
 
-        /* تكبير البطاقات للشاشات الصغيرة */
-        @media (min-width: 576px) {
-            .events-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .slider-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
-        @media (min-width: 992px) {
-            .events-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
-            }
-        }
-
-        /* للتلفزيونات الكبيرة نزيد عدد الأعمدة */
-        @media (min-width: 1400px) {
-            .events-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 40px;
-            }
-        }
-
-        .event-card {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
+        /* قسم الباتل راب القادمة */
+        .upcoming-battles {
+            padding: 80px 0;
             background-color: var(--white-color);
         }
 
-        .event-card-image {
+        .battle-cards {
+            display: flex;
+            justify-content: center;
+        }
+
+        .battle-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .battle-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .artist {
+            text-align: center;
+            flex: 1;
+        }
+
+        .artist img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold-color);
+            margin-bottom: 15px;
+        }
+
+        .artist h3 {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .vs-circle {
+            background-color: var(--secondary-color);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            margin: 0 20px;
+        }
+
+        .vs-circle span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .countdown {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 5px;
+        }
+
+        .countdown-item span:first-child {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .countdown-item span:last-child {
+            font-size: 12px;
+        }
+
+        .battle-details {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .battle-details p {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .battle-details i {
+            margin-left: 5px;
+        }
+
+        /* قسم أكثر الحفلات طلباً */
+        .popular-events {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .event-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .event-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
 
-        /* تكبير الصور للشاشات الكبيرة */
-        @media (min-width: 1400px) {
-            .event-card-image {
-                height: 250px;
-            }
-        }
-
-        .event-card-content {
-            padding: 15px;
-        }
-
-        @media (min-width: 768px) {
-            .event-card-content {
-                padding: 20px;
-            }
-        }
-
-        /* القائمة الجانبية للهاتف */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background-color: var(--white-color);
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1100;
-            transition: right 0.3s ease;
+        .event-info {
             padding: 20px;
-            overflow-y: auto;
         }
 
-        .mobile-menu.active {
-            right: 0;
+        .event-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
         }
 
-        .mobile-menu-header {
+        .event-date, .event-location {
+            color: #666;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-date i, .event-location i {
+            margin-left: 5px;
+        }
+
+        .event-price {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
         }
 
-        .close-menu-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
+        .event-price span {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        /* قسم أخبار وفعاليات الراب */
+        .rap-news {
+            padding: 80px 0;
+            background-color: var(--white-color);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 20px;
+        }
+
+        .news-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .main-news {
+            grid-row: span 2;
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .main-news img {
+            height: 300px;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-date {
+            display: block;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .news-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
             color: var(--primary-color);
-            cursor: pointer;
         }
 
-        .mobile-nav-links {
+        .main-news h3 {
+            font-size: 24px;
+        }
+
+        .news-content p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .read-more i {
+            margin-right: 5px;
+        }
+
+        /* تذييل الصفحة */
+        .site-footer {
+            background-color: var(--dark-gray);
+            color: var(--white-color);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #bbb;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white-color);
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold-color);
+            color: var(--dark-gray);
+        }
+
+        .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--gold-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after, .footer-contact h3::after, .footer-newsletter h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-links ul {
             list-style: none;
         }
 
-        .mobile-nav-links li {
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-color);
+        }
+
+        .footer-contact p {
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: #bbb;
         }
 
-        .mobile-nav-links a {
-            color: var(--primary-color);
-            font-size: 18px;
-            font-weight: 500;
+        .footer-contact i {
+            margin-left: 10px;
+            color: var(--gold-color);
         }
 
-        /* طبقة التعتيم للقائمة الجانبية */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            display: none;
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
         }
 
-        .overlay.active {
-            display: block;
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white-color);
+        }
+
+        .newsletter-form input::placeholder {
+            color: #bbb;
+        }
+
+        .newsletter-form button {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-legal a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: var(--gold-color);
+        }
+
+        /* التصميم المتجاوب */
+        @media (max-width: 992px) {
+            .slide-content {
+                right: 50px;
+                bottom: 50px;
+            }
+            
+            .slider-controls {
+                right: 50px;
+                bottom: 20px;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .main-news {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .slider-container {
+                height: 400px;
+            }
+            
+            .slide-content {
+                right: 20px;
+                bottom: 20px;
+                max-width: 80%;
+            }
+            
+            .slide-content h2 {
+                font-size: 32px;
+            }
+            
+            .battle-info {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .vs-circle {
+                margin: 20px 0;
+            }
+            
+            .battle-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-news {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .event-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- شريط التنقل -->
+    <!-- شريط التنقل العلوي -->
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="https://via.placeholder.com/150x40?text=Batel+Rap" alt="Batel Rap Logo">
+                <img src="https://via.placeholder.com/150x50?text=Batel+Rap" alt="Batel Rap Logo">
             </a>
-            
-            <!-- قائمة التنقل للكمبيوتر -->
-            <ul class="nav-desktop">
+            <ul class="nav-links">
                 <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="events.html" class="active">الفعاليات</a></li>
+                <li><a href="events.html">الحفلات القادمة</a></li>
                 <li><a href="battles.html">الباتل راب</a></li>
-                <li><a href="artists.html">الفنانين</a></li>
-                <li><a href="videos.html">الفيديوهات</a></li>
-                <li><a href="about.html">عن باتل راب</a></li>
+                <li><a href="tickets.html">شراء التذاكر</a></li>
+                <li><a href="artists.html">فنانينا</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
             </ul>
-            
-            <!-- قائمة التنقل للهاتف -->
-            <div class="nav-mobile">
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn login-btn">تسجيل دخول</a>
+                <a href="register.html" class="btn register-btn">إنشاء حساب</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
-    
-    <!-- القائمة الجانبية للهاتف -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <img src="https://via.placeholder.com/150x40?text=Batel+Rap" alt="Batel Rap Logo" class="logo">
-            <button class="close-menu-btn" id="closeMenuBtn">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <ul class="mobile-nav-links">
-            <li><a href="index.html">الرئيسية</a></li>
-            <li><a href="events.html" class="active">الفعاليات</a></li>
-            <li><a href="battles.html">الباتل راب</a></li>
-            <li><a href="artists.html">الفنانين</a></li>
-            <li><a href="videos.html">الفيديوهات</a></li>
-            <li><a href="about.html">عن باتل راب</a></li>
-        </ul>
-    </div>
-    
-    <!-- طبقة التعتيم -->
-    <div class="overlay" id="overlay"></div>
 
-    <!-- صفحة الفعاليات -->
-    <main class="events-page">
-        <!-- عنوان الصفحة -->
-        <header class="page-header">
-            <div class="container">
-                <h1 class="page-title">الفعاليات القادمة</h1>
-                <p class="page-subtitle">استكشف جميع حفلات الراب والباتل القادمة في مصر والعالم العربي. احجز تذكرتك الآن وكن جزءاً من هذه التجارب المذهلة.</p>
+    <!-- شريط العرض الشرائح -->
+    <section class="hero-slider">
+        <div class="slider-container">
+            <div class="slide active" style="background-image: url('https://via.placeholder.com/1920x500?text=Battle+Rap+Event');">
+                <div class="slide-content">
+                    <h2>باتل راب الموسم الثالث</h2>
+                    <p>أقوى المواجهات بين نجوم الراب العربي</p>
+                    <a href="#" class="btn gold-btn">احجز تذكرتك الآن</a>
+                </div>
             </div>
-        </header>
-        
+            <div class="slide" style="background-image: url('https://via.placeholder.com/1920x500?text=Rap+Concert');">
+                <div class="slide-content">
+                    <h2>حفل النجم الكبير</h2>
+                    <p>أول حفل منفرد بعد نجاح الألبوم الجديد</p>
+                    <a href="#" class="btn gold-btn">احجز تذكرتك الآن</a>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-slide"><i class="fas fa-chevron-right"></i></button>
+                <button class="next-slide"><i class="fas fa-chevron-left"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الباتل راب القادمة -->
+    <section class="upcoming-battles">
         <div class="container">
-            <!-- فلتر الفعاليات -->
-            <div class="events-filter">
-                <div class="filter-group">
-                    <select class="filter-select">
-                        <option value="all">كل الفعاليات</option>
-                        <option value="concerts">الحفلات</option>
-                        <option value="battles">الباتل راب</option>
-                    </select>
-                    
-                    <select class="filter-select">
-                        <option value="all">كل المدن</option>
-                        <option value="cairo">القاهرة</option>
-                        <option value="alexandria">الإسكندرية</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <select class="filter-select">
-                        <option value="all">كل التواريخ</option>
-                        <option value="today">اليوم</option>
-                        <option value="week">هذا الأسبوع</option>
-                    </select>
+            <h2 class="section-title">الباتل راب القادمة</h2>
+            <div class="battle-cards">
+                <div class="battle-card">
+                    <div class="battle-info">
+                        <div class="artist artist1">
+                            <img src="https://via.placeholder.com/150?text=Artist+1" alt="الفنان 1">
+                            <h3>مروان بابل</h3>
+                        </div>
+                        <div class="vs-circle">
+                            <span>VS</span>
+                            <div class="countdown" data-date="2023-12-15T20:00:00">
+                                <div class="countdown-item">
+                                    <span class="days">00</span>
+                                    <span>أيام</span>
+                                </div>
+                                <div class="countdown-item">
+                                    <span class="hours">00</span>
+                                    <span>ساعات</span>
+                                </div>
+                                <div class="countdown-item">
+                                    <span class="minutes">00</span>
+                                    <span>دقائق</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="artist artist2">
+                            <img src="https://via.placeholder.com/150?text=Artist+2" alt="الفنان 2">
+                            <h3>وديع النيل</h3>
+                        </div>
+                    </div>
+                    <div class="battle-details">
+                        <p><i class="fas fa-calendar-alt"></i> 15 ديسمبر 2023</p>
+                        <p><i class="fas fa-clock"></i> 8:00 مساءً</p>
+                        <p><i class="fas fa-map-marker-alt"></i> مسرح القاهرة، مصر</p>
+                        <a href="#" class="btn gold-btn">تصويت / تذكرة</a>
+                    </div>
                 </div>
             </div>
-            
-            <!-- شبكة الفعاليات -->
-            <div class="events-grid">
-                <!-- فعالية 1 -->
+        </div>
+    </section>
+
+    <!-- قسم أكثر الحفلات طلباً -->
+    <section class="popular-events">
+        <div class="container">
+            <h2 class="section-title">أكثر الحفلات طلباً</h2>
+            <div class="event-cards">
                 <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="فعالية باتل راب" class="event-card-image">
-                    
-                    <div class="event-card-content">
-                        <div class="event-date">
-                            <i class="far fa-calendar-alt"></i>
-                            15 ديسمبر 2023 | 8:00 م
-                        </div>
-                        
-                        <h3 class="event-title">المواجهة النهائية - الموسم الثالث لباتل راب</h3>
-                        
-                        <div class="event-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            مسرح القاهرة، مصر
-                        </div>
-                        
-                        <div class="event-card-footer">
-                            <a href="#" class="event-btn">احجز الآن</a>
+                    <img src="https://via.placeholder.com/350x200?text=Event+1" alt="الحفل 1">
+                    <div class="event-info">
+                        <h3>حفل أسطورة الراب</h3>
+                        <p class="event-date">20 ديسمبر 2023</p>
+                        <p class="event-location">دار الأوبرا المصرية</p>
+                        <div class="event-price">
+                            <span>تبدأ من 250 ج.م</span>
+                            <a href="#" class="btn gold-btn">احجز الآن</a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- فعالية 2 -->
                 <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="حفل موسيقي" class="event-card-image">
-                    
-                    <div class="event-card-content">
-                        <div class="event-date">
-                            <i class="far fa-calendar-alt"></i>
-                            22 ديسمبر 2023 | 9:00 م
-                        </div>
-                        
-                        <h3 class="event-title">حفل أسطورة الراب - ألبوم جديد</h3>
-                        
-                        <div class="event-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            دار الأوبرا المصرية، القاهرة
-                        </div>
-                        
-                        <div class="event-card-footer">
-                            <a href="#" class="event-btn">احجز الآن</a>
+                    <img src="https://via.placeholder.com/350x200?text=Event+2" alt="الحفل 2">
+                    <div class="event-info">
+                        <h3>مهرجان الراب العربي</h3>
+                        <p class="event-date">5 يناير 2024</p>
+                        <p class="event-location">مدينة الرياض، السعودية</p>
+                        <div class="event-price">
+                            <span>تبدأ من 350 ر.س</span>
+                            <a href="#" class="btn gold-btn">احجز الآن</a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- فعالية 3 -->
                 <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1461784180009-06e9903cebc2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="مهرجان الراب" class="event-card-image">
-                    
-                    <div class="event-card-content">
-                        <div class="event-date">
-                            <i class="far fa-calendar-alt"></i>
-                            5 يناير 2024 | 7:00 م
-                        </div>
-                        
-                        <h3 class="event-title">مهرجان الراب العربي 2024</h3>
-                        
-                        <div class="event-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            مدينة الرياض، السعودية
-                        </div>
-                        
-                        <div class="event-card-footer">
-                            <a href="#" class="event-btn">احجز الآن</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- فعالية 4 -->
-                <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="باتل راب" class="event-card-image">
-                    
-                    <div class="event-card-content">
-                        <div class="event-date">
-                            <i class="far fa-calendar-alt"></i>
-                            12 يناير 2024 | 8:30 م
-                        </div>
-                        
-                        <h3 class="event-title">مواجهات باتل راب - الجولة الأولى</h3>
-                        
-                        <div class="event-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            نادي الجزيرة، القاهرة
-                        </div>
-                        
-                        <div class="event-card-footer">
-                            <a href="#" class="event-btn">احجز الآن</a>
+                    <img src="https://via.placeholder.com/350x200?text=Event+3" alt="الحفل 3">
+                    <div class="event-info">
+                        <h3>ليلة الراب الدولي</h3>
+                        <p class="event-date">12 فبراير 2024</p>
+                        <p class="event-location">دبي أوبرا، الإمارات</p>
+                        <div class="event-price">
+                            <span>تبدأ من 400 د.إ</span>
+                            <a href="#" class="btn gold-btn">احجز الآن</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- قسم أخبار وفعاليات الراب -->
+    <section class="rap-news">
+        <div class="container">
+            <h2 class="section-title">أخبار وفعاليات الراب</h2>
+            <div class="news-grid">
+                <div class="news-card main-news">
+                    <img src="https://via.placeholder.com/600x300?text=Main+News" alt="الخبر الرئيسي">
+                    <div class="news-content">
+                        <span class="news-date">1 ديسمبر 2023</span>
+                        <h3>إطلاق الموسم الثالث من Batel Rap بمفاجآت غير مسبوقة</h3>
+                        <p>أعلن منظمو Batel Rap عن تفاصيل الموسم الثالث من المسابقة الأكبر للراب في العالم العربي بمشاركة نجوم جدد ومواجهات مثيرة.</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/300x200?text=News+1" alt="خبر 2">
+                    <div class="news-content">
+                        <span class="news-date">28 نوفمبر 2023</span>
+                        <h3>فنان الراب الشهير يطلق ألبومه الجديد في حفل خاص</h3>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/300x200?text=News+2" alt="خبر 3">
+                    <div class="news-content">
+                        <span class="news-date">25 نوفمبر 2023</span>
+                        <h3>تذاكر مهرجان الراب الشتوي تنفذ في ساعات</h3>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="https://via.placeholder.com/150x50?text=Batel+Rap" alt="Batel Rap Logo">
+                    <p>منصة Batel Rap الرائدة في تنظيم حفلات الراب والباتل في العالم العربي.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="events.html">الحفلات القادمة</a></li>
+                        <li><a href="battles.html">الباتل راب</a></li>
+                        <li><a href="tickets.html">شراء التذاكر</a></li>
+                        <li><a href="artists.html">فنانينا</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>تواصل معنا</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 شارع الراب، القاهرة، مصر</p>
+                    <p><i class="fas fa-phone"></i> +20 123 456 7890</p>
+                    <p><i class="fas fa-envelope"></i> info@batelrap.com</p>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>اشترك في نشرتنا</h3>
+                    <p>احصل على آخر الأخبار والعروض الخاصة مباشرة إلى بريدك الإلكتروني.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn gold-btn">اشترك</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Batel Rap. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="#">شروط الاستخدام</a>
+                    <a href="#">سياسة الخصوصية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // فتح وإغلاق القائمة الجانبية للهاتف
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const closeMenuBtn = document.getElementById('closeMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const overlay = document.getElementById('overlay');
+            // شريط العرض الشرائح
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.querySelector('.prev-slide');
+            const nextBtn = document.querySelector('.next-slide');
+            let currentSlide = 0;
             
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.add('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-            
-            closeMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            overlay.addEventListener('click', function() {
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            // تغيير حجم العناصر عند تغيير حجم الشاشة
-            function handleResize() {
-                // يمكنك إضافة أي كود يحتاج للتكيف مع تغيير حجم الشاشة هنا
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[n].classList.add('active');
             }
             
-            window.addEventListener('resize', handleResize);
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // تشغيل التلقائي للعرض الشرائح
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // إيقاف التشغيل التلقائي عند التفاعل
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            sliderContainer.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
+            
+            // العد التنازلي للباتل راب
+            function updateCountdown() {
+                const countdowns = document.querySelectorAll('.countdown');
+                
+                countdowns.forEach(countdown => {
+                    const dateString = countdown.getAttribute('data-date');
+                    const targetDate = new Date(dateString).getTime();
+                    const now = new Date().getTime();
+                    const distance = targetDate - now;
+                    
+                    if (distance < 0) {
+                        countdown.innerHTML = '<div class="countdown-ended">بدأت المعركة!</div>';
+                        return;
+                    }
+                    
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    countdown.querySelector('.days').textContent = days.toString().padStart(2, '0');
+                    countdown.querySelector('.hours').textContent = hours.toString().padStart(2, '0');
+                    countdown.querySelector('.minutes').textContent = minutes.toString().padStart(2, '0');
+                });
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 60000);
+            
+            // القائمة المتنقلة للهواتف
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const authButtons = document.querySelector('.auth-buttons');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                authButtons.style.display = authButtons.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // إغلاق القائمة عند تغيير حجم الشاشة
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    navLinks.style.display = 'flex';
+                    authButtons.style.display = 'flex';
+                } else {
+                    navLinks.style.display = 'none';
+                    authButtons.style.display = 'none';
+                }
+            });
+            
+            // تأثير التمرير السلس للروابط
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // تأثير التمرير لإظهار العناصر
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.event-card, .battle-card, .news-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // تعيين الخصائص الأولية للعناصر
+            document.querySelectorAll('.event-card, .battle-card, .news-card').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // تشغيلها مرة واحدة عند التحميل
         });
     </script>
 </body>
